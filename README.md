@@ -12,4 +12,4 @@ The project is focusing on the progress of my programming courses.
 
 ## License
 
-[GNU GENERAL PUBLIC LICENSE](https://github.com/genhaiyu/cpp-course-materials/blob/master/LICENSE)
+[GNU GENERAL PUBLIC LICENSE](https://github.com/genhaiyu/programming-course-materials/blob/master/LICENSE)
