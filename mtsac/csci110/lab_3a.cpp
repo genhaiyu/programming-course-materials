@@ -20,7 +20,6 @@ Total wall space = 2300 square feet
 The cost for a gallon of paint = $11.50
 
 
-
  *
       Prolog
  * a. Program Description
@@ -47,6 +46,7 @@ The cost for a gallon of paint = $11.50
  */
 
 #include "iostream"
+#include "iomanip"
 
 using namespace std;
 
@@ -65,47 +65,50 @@ double labor_charge(float PER_HOUR_PRICE, float square) {
     return 8 * PER_HOUR_PRICE * round(float((square / 115)));
 }
 
+// capture the input
+void capture_and_calculate (){
+    const float LABOR_PER_HOUR_PRICE = 20;
+    cout << "Please enter the square feet of wall space to be painted: " << endl;
+    float square;
+    cin >> square;
+    cout << "Please enter the price of the paint per gallon: $";
+    float price_per_gallon;
+    cin >> price_per_gallon;
+
+    if(square < 0 || price_per_gallon < 0){
+        cout << "The number of the square or price of gallon is incorrect." << endl;
+    }
+    // needed_hours
+    double hours = needed_hours(square);
+    // cost_paint
+    double cost_of_paint = cost_paint(price_per_gallon, square);
+    // labor_charge
+    double labor_of_charge = labor_charge(LABOR_PER_HOUR_PRICE, square);
+    // gallon_required
+    float gallon_required = round(float((square / 115))) * 1;
+
+
+    double total_cost = labor_of_charge + cost_of_paint;
+    cout << fixed << setprecision(2);
+    if(total_cost > 0){
+        cout << "The number of gallons of paint required: " << gallon_required << " gallon." << endl;
+        cout << "The hours of labor required: " << hours << " hours." << endl;
+        cout << "The cost of the paint: $" << cost_of_paint << endl;
+        cout << "The labor charges: $" << labor_of_charge << endl;
+        cout << "The total cost of the paint job: $" << total_cost << endl;
+    } else {
+        cout << "Sorry, the program cannot calculate the costs." << endl;
+    }
+}
+
+
 
 int main() {
 
+
     while (true){
 
-        const float PER_HOUR_PRICE = 20;
-
-        cout << "Please enter the square feet of wall space to be painted: " << endl;
-        float square;
-        cin >> square;
-        cout << "Please enter the price of the paint per gallon: $";
-        float price_per_gallon;
-        cin >> price_per_gallon;
-
-        if(square < 0 || price_per_gallon < 0){
-            cout << "The number of the square or price of gallon is incorrect.: " << endl;
-            break;
-        }
-
-        // needed_hours
-        double hours = needed_hours(square);
-        // cost_paint
-        double cost_of_paint = cost_paint(price_per_gallon, square);
-        // labor_charge
-        double labor_of_charge = labor_charge(PER_HOUR_PRICE, square);
-        // gallon_required
-        float gallon_required = round(float((square / 115))) * 1;
-
-
-        double total_cost = labor_of_charge + cost_of_paint;
-
-
-        if(total_cost > 0){
-            cout << "The number of gallons of paint required: " << gallon_required << " gallon." << endl;
-            cout << "The hours of labor required: " << hours << " hours." << endl;
-            cout << "The cost of the paint: $" << cost_of_paint << endl;
-            cout << "The labor charges: $" << labor_of_charge << endl;
-            cout << "The total cost of the paint job: $" << total_cost << endl;
-        } else {
-            cout << "Sorry, the program cannot calculate the costs." << endl;
-        }
+        capture_and_calculate();
 
         cout << "Do you want to continue (y/n)? ";
 
